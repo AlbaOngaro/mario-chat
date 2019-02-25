@@ -1,4 +1,4 @@
-import "../scss/styles.scss";
+import "./scss/styles.scss";
 
 var socket = io.connect('http://localhost:4000');
 
@@ -20,6 +20,9 @@ var Feedback = {
     template: `<p v-show="visible" class="feedback"><em>{{ handle }} is writing</em></p>`
 };
 
+// var Feedback = require('../frontend/components/Feedback.vue');
+// var Message = require('../frontend/components/Feedback.vue');
+
 var app = new Vue({
     el: '#app',
     components: {
@@ -38,6 +41,8 @@ var app = new Vue({
                 handle: vm.handle,
                 message: vm.message
             });
+
+            vm.message = '';
         },
         emitWiritingEvent: function(){
             var vm = this;
