@@ -13,11 +13,11 @@
         <div id="app">
             <h2>Mario Chat</h2>
             <div id="chat-window">
-                <chat-message :message="'Hello World!'" :handle="'Luigi'"></chat-message>
+                <chat-feedback ref="feedback"></chat-feedback>
             </div>
             <input id="handle" type="text" placeholder="Handle" v-model="handle" />
-            <input id="message" type="text" placeholder="Message" v-model="message" />
-            <button id="send" @click="emitEvent">Send</button>
+            <input id="message" type="text" placeholder="Message" v-model="message" @input="emitWiritingEvent"/>
+            <button id="send" @click="emitChatEvent">Send</button>
         </div>
 
         <script src="js/main.js"></script>

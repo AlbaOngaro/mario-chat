@@ -15,9 +15,13 @@ let io = socket(server);
 
 // awaits for socket connections and does something
 io.on('connection', (socket) => {
-    console.log('socket connected');
-    
+    // handles the chat evend fired from frontend
     socket.on('chat', (data) => {
         io.sockets.emit('chat', data);
+    });
+
+    // handles the typing event fired from frontend
+    socket.on('typing', (data) => {
+        socket.broadcast.emit('typing', data);
     });
 });
