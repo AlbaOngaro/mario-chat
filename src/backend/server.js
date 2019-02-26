@@ -8,7 +8,7 @@ let server = app.listen(4000, () => {
 });
 
 // manage static content as html and assets
-app.use(express.static('public'));
+app.use(express.static('dist'));
 
 // setup socket io backend
 let io = socket(server);

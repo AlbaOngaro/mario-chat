@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>My First Express App</title>
+        <!-- socket.io client library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+        <!-- vue js library -->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <div id="app">
+            <h2>Mario Chat</h2>
+            <div class="nes-container is-rounded">
+                <div class="nes-wrapper">
+                    <chat-message v-for="(message, index) in messages" :key="index" :handle="message.handle" :message="message.message" :position="message.classname"></chat-message>
+                    <chat-feedback v-show="feedback.visible" :handle="feedback.handle"></chat-feedback>
+                </div>
+            </div>
+            
+            <div class="nes-field">
+                <input class="nes-input" type="text" id="handle"  placeholder="Handle" v-model="user.handle"> 
+            </div>
+
+            <div class="nes-field">
+                <input class="nes-input" id="message" type="text" placeholder="Message" v-model="user.message" @input="emitWiritingEvent" @keyup.enter="emitChatEvent"> 
+            </div>
+
+            <button type="button" class="nes-btn is-primary" id="send" @click="emitChatEvent">Send</button>
+        </div>
+
+        <script src="js/app.js"></script>
+    </body>
+</html>
