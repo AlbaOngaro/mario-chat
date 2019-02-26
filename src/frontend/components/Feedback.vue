@@ -1,5 +1,5 @@
 <template>
-    <p v-show="visible" class="feedback">
+    <p>
         <em>{{ handle }} is writing</em>
     </p>
 </template>
@@ -9,10 +9,6 @@
         props: {
             handle: {
                 type: String    
-            },
-            visible: {
-                type: Boolean,
-                default: false
             }
         },
     }

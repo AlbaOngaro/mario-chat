@@ -1,5 +1,7 @@
 import "./scss/styles.scss";
 
+// import Vue from 'vue';
+
 import Message from './components/Message.vue';
 import Feedback from './components/Feedback.vue';
 
@@ -12,48 +14,69 @@ let app = new Vue({
         'chat-feedback': Feedback
     },
     data: {
-      message: '',
-      handle: ''
+        messages: [{
+            handle: 'Alba',
+            message: 'sample message',
+            classname: 'right'
+        },
+        {
+            handle: 'Alba',
+            message: 'sample message',
+            classname: 'left'
+        }],
+        user: {
+            handle: '',
+            message: '',
+        },
+        feedback: {
+            handle: '',
+            visible: false
+        }
     },
     methods: {
         emitChatEvent(){
             var vm = this;
 
             socket.emit('chat', {
-                handle: vm.handle,
-                message: vm.message
+                handle: vm.user.handle,
+                message: vm.user.message
             });
 
-            vm.message = '';
+            vm.user.message = '';
         },
         emitWiritingEvent(){
             var vm = this;
 
             socket.emit('typing', {
-                handle: vm.handle
+                handle: vm.user.handle
             });
         },
-        insertMessage(handle, message) {
-            var ComponentClass = Vue.extend(Message);
-            var instance = new ComponentClass({
-                propsData: { handle: handle, message: message }
-            })
-            
-            instance.$mount()
-            this.$el.querySelector('#chat-window').appendChild(instance.$el);
+        insertMessage(message) {
+            this.messages.push(message);
+        },
+        setFeedbackName(name){
+            this.feedback.handle = name;
         },
         toggleFeedback(visible){
-            this.$refs.feedback.visible = visible;
+            console.log(this.feedback.visible);
+            this.feedback.visible = visible;
         }
     }
 });
 
 socket.on('chat', (data) => {
     app.toggleFeedback(false);
-    app.insertMessage(data.handle, data.message);
+
+    if(data.handle === app.user.handle){
+        data.classname = 'right';
+    } else {
+        data.classname = 'left';
+    }
+
+    app.insertMessage(data);
 });
 
-socket.on('typing', (data) => {
-    app.$refs.feedback.handle = data.handle;
+/* socket.on('typing', (data) => {
+    app.setFeedbackName(data.handle);
     app.toggleFeedback(true);
-});
+}); */

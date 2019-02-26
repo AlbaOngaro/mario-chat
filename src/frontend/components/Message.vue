@@ -1,17 +1,23 @@
 <template>
-    <p>
+    <!-- <p>
         <strong>{{ handle }}:</strong> {{ message }}
-    </p>
+    </p> -->
+
+    <div :class="'message -' + position">
+        <div :class="'nes-balloon from-' + position">
+            <p>{{ message }}</p>
+        </div>
+    </div>
 </template>
 
 <script>
     export default {
-        props: ['handle','message'],
+        props: ['handle','message', 'position'],
     }
 </script>
 
 <style lang="scss" scoped>
-    p {
+    /* p {
         padding: 14px 0px;
         margin: 0 20px;
         border-bottom: 1px solid #e9e9e9;
@@ -20,5 +26,5 @@
         strong{
             color: #575ed8;
         }
-    }
+    } */
 </style>

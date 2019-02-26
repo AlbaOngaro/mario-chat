@@ -1,11 +1,60 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+@import url("https://unpkg.com/nes.css@latest/css/nes.min.css");
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 
 body{
     padding: 0;
     margin: 0;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Press Start 2P', cursive;
 }
 
+#app {
+    max-width: 450px;
+    margin: 1rem auto;
+    display: block;
+}
+
+.nes-container {
+    &.is-rounded{
+        &.is-dark{
+            margin: 0;
+            padding: 8px;
+            box-sizing: border-box;
+            height: 270px;
+
+            .nes-wrapper{
+                width: 100%;
+                overflow: auto;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                height: 100%;
+            }
+
+            p {
+                color: black;
+            }
+        }
+    }
+}
+
+.nes-field{
+    input{
+        margin: 1rem 0 1rem 4px;
+        width: calc(100% - 8px);
+    }
+}
+
+.message {
+    &.-right {
+        margin-left: auto;
+    }
+
+    &.-left {
+        margin-right: auto;
+    }
+}
+
+/*
 h2{
     font-size: 18px;
     padding: 10px 20px;
@@ -55,4 +104,4 @@ button{
     padding: 12px 0;
     width: 100%;
     border-radius: 0 0 2px 2px;
-}
+} */

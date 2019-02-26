@@ -12,12 +12,22 @@
     <body>
         <div id="app">
             <h2>Mario Chat</h2>
-            <div id="chat-window">
-                <chat-feedback ref="feedback"></chat-feedback>
+            <div class="nes-container is-rounded is-dark">
+                <div class="nes-wrapper">
+                    <chat-message v-for="(message, index) in messages" :key="index" :handle="message.handle" :message="message.message" :position="message.classname"></chat-message>
+                    <chat-feedback v-show="feedback.visible" :handle="feedback.handle"></chat-feedback>
+                </div>
             </div>
-            <input id="handle" type="text" placeholder="Handle" v-model="handle" />
-            <input id="message" type="text" placeholder="Message" v-model="message" @input="emitWiritingEvent"/>
-            <button id="send" @click="emitChatEvent">Send</button>
+            
+            <div class="nes-field">
+                <input class="nes-input" type="text" id="handle"  placeholder="Handle" v-model="user.handle"> 
+            </div>
+
+            <div class="nes-field">
+                <input class="nes-input" id="message" type="text" placeholder="Message" v-model="user.message" @input="emitWiritingEvent"> 
+            </div>
+
+            <button type="button" class="nes-btn is-primary" id="send" @click="emitChatEvent">Send</button>
         </div>
 
         <script src="js/app.js"></script>
