@@ -29,8 +29,6 @@ h2 {
     color: #555; }
     #chat-window p.feedback {
       order: 9999; }
-  #chat-window strong {
-    color: #575ed8; }
 
 #feedback p {
   color: #aaa;

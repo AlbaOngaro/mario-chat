@@ -18,6 +18,11 @@
     }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+     p{
+        color: #aaa;
+        padding: 14px 0px;
+        margin: 0 20px;
+        order: 9999;
+     }
 </style>

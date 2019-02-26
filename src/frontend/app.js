@@ -1,29 +1,11 @@
 import "./scss/styles.scss";
 
-var socket = io.connect('http://localhost:4000');
+import Message from './components/Message.vue';
+import Feedback from './components/Feedback.vue';
 
-var Message = {
-    props: ['handle','message'],
-    template: `<p><strong>{{ handle }}:</strong> {{ message }}</p>`
-};
+let socket = io.connect('http://localhost:4000');
 
-var Feedback = {
-    props: {
-        handle: {
-            type: String    
-        },
-        visible: {
-            type: Boolean,
-            default: false
-        }
-    },
-    template: `<p v-show="visible" class="feedback"><em>{{ handle }} is writing</em></p>`
-};
-
-// var Feedback = require('../frontend/components/Feedback.vue');
-// var Message = require('../frontend/components/Feedback.vue');
-
-var app = new Vue({
+let app = new Vue({
     el: '#app',
     components: {
         'chat-message': Message,
@@ -34,7 +16,7 @@ var app = new Vue({
       handle: ''
     },
     methods: {
-        emitChatEvent: function(){
+        emitChatEvent(){
             var vm = this;
 
             socket.emit('chat', {
@@ -44,14 +26,14 @@ var app = new Vue({
 
             vm.message = '';
         },
-        emitWiritingEvent: function(){
+        emitWiritingEvent(){
             var vm = this;
 
             socket.emit('typing', {
                 handle: vm.handle
             });
         },
-        insertMessage: function (handle, message) {
+        insertMessage(handle, message) {
             var ComponentClass = Vue.extend(Message);
             var instance = new ComponentClass({
                 propsData: { handle: handle, message: message }
@@ -66,12 +48,12 @@ var app = new Vue({
     }
 });
 
-socket.on('chat', function(data){
+socket.on('chat', (data) => {
     app.toggleFeedback(false);
     app.insertMessage(data.handle, data.message);
 });
 
-socket.on('typing', function(data) {
+socket.on('typing', (data) => {
     app.$refs.feedback.handle = data.handle;
     app.toggleFeedback(true);
 });
