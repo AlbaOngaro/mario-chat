@@ -1,7 +1,5 @@
 import "./scss/styles.scss";
 
-// import Vue from 'vue';
-
 import Message from './components/Message.vue';
 import Feedback from './components/Feedback.vue';
 
@@ -14,16 +12,18 @@ let app = new Vue({
         'chat-feedback': Feedback
     },
     data: {
-        messages: [{
-            handle: 'Alba',
-            message: 'sample message',
-            classname: 'right'
-        },
-        {
-            handle: 'Alba',
-            message: 'sample message',
-            classname: 'left'
-        }],
+        messages: [
+            {
+                handle: 'Alba',
+                message: 'sample message I sent',
+                classname: 'right'
+            },
+            {
+                handle: 'Alba',
+                message: 'another sample message I received',
+                classname: 'left'
+            }
+        ],
         user: {
             handle: '',
             message: '',
@@ -35,17 +35,19 @@ let app = new Vue({
     },
     methods: {
         emitChatEvent(){
-            var vm = this;
+            let vm = this;
 
-            socket.emit('chat', {
-                handle: vm.user.handle,
-                message: vm.user.message
-            });
+            if(vm.user.message !== ''){
+                socket.emit('chat', {
+                    handle: vm.user.handle,
+                    message: vm.user.message
+                });
 
-            vm.user.message = '';
+                vm.user.message = '';
+            }
         },
         emitWiritingEvent(){
-            var vm = this;
+            let vm = this;
 
             socket.emit('typing', {
                 handle: vm.user.handle
@@ -58,7 +60,6 @@ let app = new Vue({
             this.feedback.handle = name;
         },
         toggleFeedback(visible){
-            console.log(this.feedback.visible);
             this.feedback.visible = visible;
         }
     }

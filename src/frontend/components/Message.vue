@@ -1,10 +1,6 @@
 <template>
-    <!-- <p>
-        <strong>{{ handle }}:</strong> {{ message }}
-    </p> -->
-
     <div :class="'message -' + position">
-        <div :class="'nes-balloon from-' + position">
+        <div :class="'nes-balloon from-' + position + (position === 'right' ? ' is-primary' : '')">
             <p>{{ message }}</p>
         </div>
     </div>
@@ -17,14 +13,5 @@
 </script>
 
 <style lang="scss" scoped>
-    /* p {
-        padding: 14px 0px;
-        margin: 0 20px;
-        border-bottom: 1px solid #e9e9e9;
-        color: #555;
-
-        strong{
-            color: #575ed8;
-        }
-    } */
+    
 </style>
