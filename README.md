@@ -1,5 +1,5 @@
 # Chat App
-Simple chat app built using [express js](https://expressjs.com/) for the server part and [socket.io](https://socket.io/) to manage socket connections, [Vuejs](https://vuejs.org/) for frontend and (nes.css)[https://nostalgic-css.github.io/NES.css/] as css framework.
+Simple chat app built using [express js](https://expressjs.com/) for the server part and [socket.io](https://socket.io/) to manage socket connections, [Vuejs](https://vuejs.org/) for frontend and [nes.css](https://nostalgic-css.github.io/NES.css/) as css framework.
 
 ## How to use
 Clone or fork the project and then simply run these commands to watch the magic happen :)
