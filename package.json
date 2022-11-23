@@ -15,7 +15,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "nes.css": "^2.0.0",
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.5.0",
     "vue": "^2.6.7"
   },
   "devDependencies": {
